@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <remote  name="aosp" fetch=".." review="https://android-review.googlesource.com/" />
-  <default revision="master-kernel-build-2021" remote="aosp" sync-j="4" />
+  <remote  name="aosp" fetch="https://android.googlesource.com/" review="https://android-review.googlesource.com/" />
+  <remote  name="github" fetch="https://github.com/" />
+  <default revision="master-kernel-build-2021" remote="aosp" sync-j="8" />
 
   <superproject name="kernel/superproject" remote="aosp" revision="common-android12-5.10" />
 
-  <project path="build" name="kernel/build" />
+  <project path="build" name="pa-gr/android_kernel_build" remote="github" revision="android12-5.10-marble">
+    <linkfile dest="build.sh" src="build-ak3.sh"/>
+  </project>
+  <project path="AnyKernel3" name="ghostrider-reborn/AnyKernel3" remote="github" revision="marble-gki" />
   <project path="hikey-modules" name="kernel/hikey-modules" revision="android12-5.10" />
-  <project path="common" name="kernel/common" revision="android12-5.10" />
+  <project path="common" name="ghostrider-reborn/android_kernel_common" remote="github" revision="android12-5.10-marble" />
   <project path="kernel/tests" name="kernel/tests" />
   <project path="kernel/configs" name="kernel/configs" />
   <project path="common-modules/virtual-device" name="kernel/common-modules/virtual-device" revision="android12-5.10" />
-  <project path="prebuilts-master/clang/host/linux-x86" name="platform/prebuilts/clang/host/linux-x86" clone-depth="1" />
+  <project path="manifest" name="pa-gr/kernel_manifest" remote="github" revision="android12-5.10-marble" />
+  <project path="prebuilts-master/clang/host/linux-x86" name="platform/prebuilts/clang/host/linux-x86" revision="android13-release" clone-depth="1" />
   <project path="prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8" name="platform/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8" clone-depth="1" />
   <project path="prebuilts/build-tools" name="platform/prebuilts/build-tools" clone-depth="1" />
   <project path="prebuilts/kernel-build-tools" name="kernel/prebuilts/build-tools" clone-depth="1" />
